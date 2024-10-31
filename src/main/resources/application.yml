@@ -5,25 +5,13 @@ spring:
     ansi:
       enabled: ALWAYS
 
-  datasource:
-    url: jdbc:postgresql://localhost:5432/TraningSpringBoot  
-    username: postgres                               
-    password: 1qaz!QAZ                              
-    driver-class-name: org.postgresql.Driver          
-
-    # Hikari connection pool settings
-    hikari:
-      maximum-pool-size: 10                            # Maximum number of connections in the pool
-      minimum-idle: 2                                  # Minimum number of idle connections
-      idle-timeout: 60000                              # Idle timeout in milliseconds
-      connection-timeout: 30000                        # Connection timeout in milliseconds
-
-  jpa:
-    hibernate:
-      ddl-auto: update                                 # Automatically update the database schema
-    show-sql: true                                     # Show SQL queries in logs
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect  # Specify PostgreSQL dialect
+  # datasource:
+  #   url: jdbc:postgresql://localhost:5432/TraningSpringBoot  
+  #   username: postgres                               
+  #   password: 1qaz!QAZ                              
+  #   driver-class-name: org.postgresql.Driver
+  data:
+    mongodb:
+      uri: mongodb://127.0.0.1:27017/for_spring?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.1          
 server:
   port: 8070
