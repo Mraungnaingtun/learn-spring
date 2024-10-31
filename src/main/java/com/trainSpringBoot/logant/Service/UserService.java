@@ -54,4 +54,12 @@ public class UserService {
     public Page<User> getPaginatedUsers(int page, int size, Sort sort) {
         return userRepository.findAll(PageRequest.of(page, size, sort));
     }
+
+
+    //Streamble
+    public List<User> getUserNameContain(String name){
+        return userRepository.findByNameContaining(name).stream()
+            .filter(user -> user.getName().length() > 3 && !user.getEmail().equals(""))
+            .toList();
+    }
 }
