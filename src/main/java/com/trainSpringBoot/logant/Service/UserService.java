@@ -30,13 +30,13 @@ public class UserService {
 
     public User updateUser(String id, User updatedUser) {
         return userRepository.findById(id)
-            .map(user -> {
-                user.setName(updatedUser.getName());
-                user.setEmail(updatedUser.getEmail());
-                user.setPassword(updatedUser.getPassword());
-                return userRepository.save(user);
-            })
-            .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
+                .map(user -> {
+                    user.setName(updatedUser.getName());
+                    user.setEmail(updatedUser.getEmail());
+                    user.setPassword(updatedUser.getPassword());
+                    return userRepository.save(user);
+                })
+                .orElseThrow(() -> new RuntimeException("User not found with id: " + id));
     }
 
     public User getUserById(String id) {
@@ -55,11 +55,10 @@ public class UserService {
         return userRepository.findAll(PageRequest.of(page, size, sort));
     }
 
-
-    //Streamble
-    public List<User> getUserNameContain(String name){
-        return userRepository.findByNameContaining(name).stream()
-            .filter(user -> user.getName().length() > 3 && !user.getEmail().equals(""))
-            .toList();
+    // Streamble
+    public List<User> getUserNameContain(String name) {
+        return userRepository.findByNameContaining(name,Sort.by("name").ascending()).stream()
+                .filter(user -> user.getName().length() > 3 && !user.getEmail().equals(""))
+                .toList();
     }
 }

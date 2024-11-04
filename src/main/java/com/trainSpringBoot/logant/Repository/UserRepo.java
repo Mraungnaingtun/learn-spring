@@ -1,4 +1,5 @@
 package com.trainSpringBoot.logant.Repository;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.util.Streamable;
 
@@ -10,5 +11,5 @@ public interface UserRepo extends MongoRepository<User, String> {
     List<User> findByPassword(String password);
     UserSummary findByEmailAndPassword(String email,String password);
 
-    Streamable<User> findByNameContaining(String name);
+    Streamable<User> findByNameContaining(String name,Sort sort);
 }
