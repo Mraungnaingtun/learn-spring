@@ -1,0 +1,36 @@
+    public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
+
+    // 1. Derived Query Methods
+    List<User> findByLastName(String lastName);
+    List<User> findByAgeBetween(int startAge, int endAge);
+    
+    // 2. JPQL Query
+    @Query("SELECT u FROM User u WHERE u.firstName = :firstName AND u.age = :age")
+    List<User> findByFirstNameAndAge(@Param("firstName") String firstName, @Param("age") int age);
+
+    // 3. Native SQL Query
+    @Query(value = "SELECT * FROM users WHERE last_name = ?1", nativeQuery = true)
+    List<User> findByLastNameNative(String lastName);
+
+    // 4. Modifying Query
+    @Modifying
+    @Query("UPDATE User u SET u.status = :status WHERE u.id = :id")
+    int updateUserStatus(@Param("id") Long id, @Param("status") String status);
+
+    // 5. Named Query
+    List<User> findByStatus(@Param("status") String status);
+
+    // 6. Query by Example
+    List<User> findAll(Example<User> example);
+
+    // 7. Specification
+    List<User> findAll(Specification<User> spec);
+
+    // 8. Async Query
+    @Async
+    Future<List<User>> findByLastName(String lastName);
+
+    // 9. Reactive Query (if using reactive Spring Data)
+    Mono<User> findByLastName(String lastName);
+    Flux<User> findAllByStatus(String status);
+}

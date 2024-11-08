@@ -15,6 +15,8 @@ import java.util.concurrent.Future;
 import java.util.stream.Stream;
 
 public interface UserRepo extends MongoRepository<User, String> {
+
+
     List<User> findByPassword(String password);
 
     UserSummary findByEmailAndPassword(String email, String password);
@@ -23,6 +25,9 @@ public interface UserRepo extends MongoRepository<User, String> {
 
     @Query("select u from User u")
     Stream<User> findAllByCustomQueryAndStream();
+
+    @Query("{ 'firstname' : ?0 }")
+    List<User> findByThePersonsFirstname(String firstname);
 
     @Async
     Future<User> findByFirstname(String firstname);
