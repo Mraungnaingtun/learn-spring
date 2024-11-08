@@ -57,7 +57,9 @@ public class UserService {
 
     // Streamble
     public List<User> getUserNameContain(String name) {
-        return userRepository.findByNameContaining(name,Sort.by("name").ascending()).stream()
+        return userRepository.findByNameContaining(name, Sort.by("name")
+                .ascending())
+                .stream()
                 .filter(user -> user.getName().length() > 3 && !user.getEmail().equals(""))
                 .toList();
     }

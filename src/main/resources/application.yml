@@ -4,12 +4,6 @@ spring:
   output:
     ansi:
       enabled: ALWAYS
-
-  # datasource:
-  #   url: jdbc:postgresql://localhost:5432/TraningSpringBoot  
-  #   username: postgres                               
-  #   password: 1qaz!QAZ                              
-  #   driver-class-name: org.postgresql.Driver
   data:
     mongodb:
       uri: mongodb://127.0.0.1:27017/for_spring?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.3.1          
