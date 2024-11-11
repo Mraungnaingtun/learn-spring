@@ -1,3 +1,8 @@
+
+
+
+
+
 List<User> findByLastname(Limit limit);
 
 User findFirstByOrderByLastnameAsc();
@@ -11,9 +16,6 @@ Slice<User> findTop3ByLastname(String lastname, Pageable pageable);
 List<User> findFirst10ByLastname(String lastname, Sort sort);
 
 List<User> findTop10ByLastname(String lastname, Pageable pageable);
-
-
-
 
 //==========================================================
 
