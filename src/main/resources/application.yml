@@ -7,8 +7,8 @@ spring:
 
   datasource:
     url: jdbc:postgresql://localhost:5432/TraningSpringBoot  
-    username: postgres                               
-    password: root                              
+    username: postgres
+    password: root
     driver-class-name: org.postgresql.Driver          
 
     # Hikari connection pool settings
