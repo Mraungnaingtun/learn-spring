@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 
 @Repository
 public interface PersonRepo extends JpaRepository<Person, Long> {
-    Streamable<Person> findByLastnameContaining(String lastname);
+    Streamable<Person> findByLastNameContaining(String lastname);
 
-    Streamable<Person> findByFirstnameContaining(String firstname);
+    Streamable<Person> findByFirstNameContaining(String firstname);
 }
 
 /*
@@ -33,19 +33,19 @@ class PersonService {
 
     // --------------Basic------------------------------
     public Streamable<Person> findByLastname(String lastname) {
-        return repo.findByLastnameContaining(lastname);
+        return repo.findByLastNameContaining(lastname);
     }
 
     // -- Using Streamable's Features in Service Methods --
     public Streamable<Person> getPeopleWithFilteredLastNames(String lastname) {
-        return repo.findByLastnameContaining(lastname)
+        return repo.findByLastNameContaining(lastname)
                 .filter(person -> !person.getLastName().startsWith("Z")); // Exclude last names starting with "Z"
     }
 
     // Combining Results from Multiple Methods in a Single Streamable
     public Streamable<Person> findByFirstAndLastName(String firstname, String lastname) {
-        Streamable<Person> firstNameResults = repo.findByFirstnameContaining(firstname);
-        Streamable<Person> lastNameResults = repo.findByLastnameContaining(lastname);
+        Streamable<Person> firstNameResults = repo.findByFirstNameContaining(firstname);
+        Streamable<Person> lastNameResults = repo.findByLastNameContaining(lastname);
 
         return firstNameResults.and(lastNameResults)
                 .filter(person -> person.isActive());
@@ -53,7 +53,7 @@ class PersonService {
 
     // Transforming Streamable to a Different Type or Collection
     public List<String> getActiveUserEmails(String firstname) {
-        return repo.findByFirstnameContaining(firstname)
+        return repo.findByFirstNameContaining(firstname)
                 .filter(Person::isActive)
                 .map(Person::getEmail)
                 .toList();
