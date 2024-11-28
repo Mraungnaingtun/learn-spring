@@ -1,6 +1,7 @@
-package com.trainSpringBoot.logant.Company;
+package com.trainSpringBoot.logant.QueryMethods.Company;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trainSpringBoot.logant.Projections.CompanySummary;
-
 
 @RestController
 @RequestMapping("/api/companies")
@@ -41,14 +41,16 @@ public class CompanyController {
     }
 
     @GetMapping("/byName")
-    public ResponseEntity<Company> getByName(@RequestParam String param) {
+    public ResponseEntity<Company> getByName(@RequestParam(name = "name")  String param) {
         return ResponseEntity.ok(companyService.getCompanyByName(param));
     }
 
     @GetMapping("/search")
-    public ResponseEntity<?> getByCompanyNameAndWebsite(@RequestParam String company,@RequestParam String website) {
-        // return ResponseEntity<>(companyService.getCompanyNameAndWebsiteAddress(company,website),HttpStatus.OK);
-        return ResponseEntity.status(HttpStatus.OK).body(companyService.getCompanyNameAndWebsiteAddress(company,website));
+    public ResponseEntity<?> getByCompanyNameAndWebsite(@RequestParam String company, @RequestParam String website) {
+        // return
+        // ResponseEntity<>(companyService.getCompanyNameAndWebsiteAddress(company,website),HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(companyService.getCompanyNameAndWebsiteAddress(company, website));
     }
 
     @GetMapping("/{id}")
@@ -61,12 +63,11 @@ public class CompanyController {
         }
     }
 
-    //Projections Example
+    // Projections Example
     @GetMapping("/getByName")
     public List<CompanySummary> getMethodName(@RequestParam String name) {
         return companyService.getCustomerByName(name);
     }
-    
 
     @PostMapping
     public Company createCompany(@RequestBody Company company) {
@@ -98,4 +99,11 @@ public class CompanyController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @PutMapping("/phone")
+    public ResponseEntity<?> updatePhone(@RequestBody Map<String, String> req) {
+        return ResponseEntity.ok(
+                companyService.updatePhoneNumber(req.getOrDefault("newNumber", ""), req.getOrDefault("oldNumber", "")));
+    }
+
 }

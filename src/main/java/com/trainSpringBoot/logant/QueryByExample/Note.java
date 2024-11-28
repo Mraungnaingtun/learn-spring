@@ -1,4 +1,4 @@
-package com.trainSpringBoot.logant.QueryByExampleExecutor;
+package com.trainSpringBoot.logant.QueryByExample;
 
 import java.time.LocalDateTime;
 

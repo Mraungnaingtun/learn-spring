@@ -1,4 +1,4 @@
-package com.trainSpringBoot.logant.QueryByExampleExecutor;
+package com.trainSpringBoot.logant.QueryByExample;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

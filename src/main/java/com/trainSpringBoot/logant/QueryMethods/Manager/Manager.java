@@ -1,4 +1,4 @@
-package com.trainSpringBoot.logant.Entity;
+package com.trainSpringBoot.logant.QueryMethods.Manager;
 
 
 

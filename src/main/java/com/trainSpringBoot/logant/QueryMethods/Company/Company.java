@@ -1,6 +1,6 @@
-package com.trainSpringBoot.logant.Company;
+package com.trainSpringBoot.logant.QueryMethods.Company;
 
-import com.trainSpringBoot.logant.Entity.Manager;
+import com.trainSpringBoot.logant.QueryMethods.Manager.Manager;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

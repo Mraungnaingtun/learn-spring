@@ -1,4 +1,4 @@
-package com.trainSpringBoot.logant.Company;
+package com.trainSpringBoot.logant.QueryMethods.Company;
 
 import java.util.List;
 
@@ -6,10 +6,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.trainSpringBoot.logant.Entity.Manager;
 import com.trainSpringBoot.logant.Projections.CompanySummary;
-import com.trainSpringBoot.logant.Repository.ManagerRepo;
+import com.trainSpringBoot.logant.QueryMethods.Manager.Manager;
+import com.trainSpringBoot.logant.QueryMethods.Manager.ManagerRepo;
 
 @Service
 public class CompanyService {
@@ -79,5 +80,10 @@ public class CompanyService {
 
     public List<CompanySummary> getCustomerByName(String name){
         return companyRepository.findByCompanyName(name);
+    }
+
+    @Transactional
+    public int updatePhoneNumber(String newNumber, String oldNumber) {
+        return companyRepository.updatePhoneNumber(newNumber, oldNumber);
     }
 }

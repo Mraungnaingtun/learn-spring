@@ -1,4 +1,4 @@
-package com.trainSpringBoot.logant.QueryByExampleExecutor;
+package com.trainSpringBoot.logant.QueryByExample;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
