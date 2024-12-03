@@ -10,4 +10,15 @@ public class LearnSpringBoot {
 		SpringApplication.run(LearnSpringBoot.class, args);
 	}
 
+	// @Bean
+	// public CommandLineRunner demo(DateTimeRepo repo) {
+	// 	return (args) -> {
+	// 		for(int i = 0;i<100;i++){
+	// 			DateTimeTest dt = new DateTimeTest();
+	// 			dt.setDate(General.generateRandomDateTime());
+	// 			dt.setName(General.generateRandomUsername(10));
+	// 			repo.save(dt);
+	// 		}
+	// 	};
+	// }
 }
